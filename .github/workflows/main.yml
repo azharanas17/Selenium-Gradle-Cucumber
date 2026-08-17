@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-report-html
-          path: reports/cucumber.html
+          path: reports/index.html
           retention-days: 30
 
       - name: Upload Cucumber JSON Report
