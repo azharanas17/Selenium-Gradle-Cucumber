@@ -17,6 +17,7 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.29.0'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.9.3'
+    testImplementation 'io.rest-assured:rest-assured:5.5.0'
 }
 
 java {

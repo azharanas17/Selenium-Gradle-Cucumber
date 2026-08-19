@@ -13,7 +13,7 @@ import org.junit.platform.suite.api.IncludeTags;
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "tests")
-@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, html:reports/login-report.html, json:reports/login-cucumber.json")
-@IncludeTags("ui")
-public class LoginTest {
+@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, html:reports/api-report.html, json:reports/api-cucumber.json")
+@IncludeTags("api")
+public class ApiTest {
 }

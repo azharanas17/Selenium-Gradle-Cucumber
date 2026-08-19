@@ -1,3 +1,4 @@
+@ui
 Feature: Login
 
   Scenario: Login dengan kredensial valid
