@@ -32,20 +32,58 @@ jobs:
       - name: Run tests
         run: ./gradlew test --no-daemon
 
-      - name: Upload Cucumber HTML Report
+      - name: Create reports index
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cucumber-report-html
-          path: reports/index.html
-          retention-days: 30
+        run: |
+          mkdir -p reports
+          cat << 'EOF' > reports/index.html
+          <!DOCTYPE html>
+          <html lang="id">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Automation Test Reports</title>
+              <style>
+                  * { margin: 0; padding: 0; box-sizing: border-box; }
+                  body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+                  .container { text-align: center; }
+                  h1 { color: #333; margin-bottom: 40px; font-size: 28px; }
+                  .cards { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+                  .card { background: #fff; border-radius: 12px; padding: 40px 50px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); text-decoration: none; color: inherit; transition: transform 0.2s, box-shadow 0.2s; }
+                  .card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+                  .card h2 { font-size: 20px; margin-bottom: 10px; }
+                  .card p { color: #666; font-size: 14px; }
+                  .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 15px; }
+                  .badge-ui { background: #e3f2fd; color: #1565c0; }
+                  .badge-api { background: #e8f5e9; color: #2e7d32; }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <h1>Automation Test Reports</h1>
+                  <div class="cards">
+                      <a class="card" href="login-report.html">
+                          <span class="badge badge-ui">UI</span>
+                          <h2>Login Test Report</h2>
+                          <p>Cucumber Selenium - SauceDemo</p>
+                      </a>
+                      <a class="card" href="api-report.html">
+                          <span class="badge badge-api">API</span>
+                          <h2>API Test Report</h2>
+                          <p>Cucumber REST Assured - api.rizqifauzan.com</p>
+                      </a>
+                  </div>
+              </div>
+          </body>
+          </html>
+          EOF
 
-      - name: Upload Cucumber JSON Report
+      - name: Upload Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cucumber-report-json
-          path: reports/cucumber.json
+          name: cucumber-reports
+          path: reports/
           retention-days: 30
 
       - name: Upload Gradle Test Report
