@@ -11,7 +11,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class Hooks {
     private static WebDriver driver;
 
-    @Before
+    @Before("@ui")
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
@@ -22,7 +22,7 @@ public class Hooks {
         driver = new ChromeDriver(options);
     }
 
-    @After
+    @After("@ui")
     public void tearDown() {
         if (driver != null) {
             driver.quit();

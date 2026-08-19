@@ -11,6 +11,7 @@ import tests.api.BaseApiTest;
 import tests.api.models.RegisterRequest;
 import tests.api.models.StudentRequest;
 
+import io.cucumber.datatable.DataTable;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -57,15 +58,15 @@ public class ApiSteps {
     }
 
     @When("Saya melakukan POST request {string} dengan token dan body siswa:")
-    public void sayaMelakukanPostRequestDenganTokenDanBodySiswa(String endpoint, Map<String, String> dataTable) {
+    public void sayaMelakukanPostRequestDenganTokenDanBodySiswa(String endpoint, DataTable dataTable) {
         StudentRequest body = new StudentRequest(
-                dataTable.get("nama"),
-                dataTable.get("nis"),
-                dataTable.get("kelas"),
-                dataTable.get("jurusan"),
-                dataTable.get("email"),
-                dataTable.get("telepon"),
-                dataTable.get("alamat"));
+                dataTable.cell(1, 0),
+                dataTable.cell(1, 1),
+                dataTable.cell(1, 2),
+                dataTable.cell(1, 3),
+                dataTable.cell(1, 4),
+                dataTable.cell(1, 5),
+                dataTable.cell(1, 6));
         response = StudentAPI.createStudent(token, body);
     }
 
