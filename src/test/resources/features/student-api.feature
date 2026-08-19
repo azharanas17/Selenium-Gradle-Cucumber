@@ -11,7 +11,7 @@ Feature: Student API Test
     Given Saya melakukan login terlebih dahulu
     When Saya melakukan POST request "/api/siswa" dengan token dan body siswa:
       | nama              | nis    | kelas    | jurusan | email              | telepon     | alamat             |
-      | Automation Student | 123454 | X-IPA-1  | TI      | auto4@test.com     | 0812345674  | Jl. Automation     |
+      | Automation Student | 123459 | X-IPA-1  | TI      | auto499@test.com     | 0812345679  | Jl. Automation     |
     Then Status code adalah 201
     And Response body memiliki field "success" dengan nilai true
     And Response body memiliki field "message" dengan nilai "Siswa berhasil ditambahkan"
